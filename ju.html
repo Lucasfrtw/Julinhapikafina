@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confetes Coloridos</title>
+  <script src="confetti.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      height: 100vh;
+      background-color: #f0f0f0; /* Cor de fundo de sua escolha */
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      font-family: 'Arial', sans-serif;
+      background-image: linear-gradient(45deg, #f06, #9f6, #6f9, #6cf);
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: rainbow 5s linear infinite;
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+      animation: fade-in 1.5s ease-out forwards;
+    }
+
+    @keyframes rainbow {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1 id="titulo">Seu Título Aqui</h1>
+    <p id="paragrafo" class="fade-in">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, natus cum molestias, eius atque obcaecati similique repellendus doloribus quidem esse harum, maiores fugit iusto! Perferendis unde labore nemo perspiciatis atque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus dolore quasi expedita, harum nisi tempore, possimus nulla optio officiis sunt unde repellat adipisci ullam consectetur beatae corporis, recusandae sed cumque. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus nobis similique modi! Esse eveniet ducimus iste consectetur nam unde illo accusamus itaque explicabo tempore sunt, nisi quod quaerat possimus nobis. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor odio illum numquam aliquam excepturi illo iure quidem non quo obcaecati, autem ex iusto quis accusantium recusandae porro ut magni sunt. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Distinctio quo dolores quaerat numquam repellat exercitationem accusamus voluptates incidunt nam consequuntur dicta eligendi non minus, sed sint quidem modi tempora! Atque. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta dolor earum dolorum, amet assumenda expedita labore molestiae vel maiores quas atque velit vitae sed qui consectetur sunt possimus dolorem odit?</p>
+  </div>
+
+  <script>
+    // Configuração para o efeito de confetes
+    const config = {
+      angle: 90,
+      spread: 360,
+      startVelocity: 40,
+      elementCount: 70,
+      decay: 0.9
+    };
+
+    // Criação do efeito de confetes
+    confetti.create(document.body, config);
+
+    function trocarParagrafo() {
+      const titulo = document.getElementById('titulo');
+      const paragrafo = document.getElementById('paragrafo');
+
+      // Adiciona classe fade-out para o parágrafo atual
+      paragrafo.classList.add('fade-out');
+
+      // Após 1.5 segundos, troca o texto e remove a classe fade-out
+      setTimeout(() => {
+        paragrafo.innerHTML = `Seu novo parágrafo aqui`;
+        paragrafo.classList.remove('fade-out');
+        paragrafo.classList.add('fade-in');
+      }, 1500);
+    }
+
+    // Inicia a troca de parágrafos a cada 4 segundos
+    setInterval(trocarParagrafo, 4000);
+  </script>
+</body>
+</html>
